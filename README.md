@@ -19,7 +19,7 @@ in the web container, as in upstream's image.
 
 ```bash
 isoloom generate
-isoloom up docker
+isoloom run docker
 ```
 
 Then open http://localhost:8080/ and log in as `scanner1` / `scanner1`. The same spec runs as
