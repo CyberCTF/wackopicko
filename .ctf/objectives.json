@@ -1,0 +1,35 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Find the WackoPicko page that runs a system command with your input, use it to run a command on the server, and read /ctf/flag.",
+      "check": { "evidence": "SECRET", "format": "FLAG{%s}" },
+      "dev": "FLAG{dev-wackopicko}",
+      "hints": [
+        "One page checks how strong a password is, and it does not do that in PHP.",
+        "The password is placed in a shell command line. Which vulnerability class does that allow?"
+      ],
+      "steps": [
+        {
+          "key": "page",
+          "title": "Find the page",
+          "prompt": "Which WackoPicko page checks a password by running an external program? (its file name)",
+          "check": { "answer": ["passcheck.php", "passcheck"] }
+        },
+        {
+          "key": "parameter",
+          "title": "Find the input",
+          "prompt": "Which POST parameter is placed in the command line?",
+          "check": { "answer": ["password"] }
+        },
+        {
+          "key": "class",
+          "title": "Name the flaw",
+          "prompt": "Which vulnerability class lets a second command of yours run on the server?",
+          "check": { "answer": ["command injection", "os command injection", "shell injection"] }
+        }
+      ]
+    }
+  ]
+}
